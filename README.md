@@ -1,4 +1,4 @@
-# gulp-inline-src
+# gulp-inline-res
 ====================
 
 > gulp plugin, inline js, css and html files
@@ -16,4 +16,4 @@ var detailTpl = "<tpl src="src/tpl/detail.html?___inline"></tpl>"
 ```
 
 ## Change Log
-* 0.1.0 Baseic Usage
+* 0.1.1 Baseic Usage
