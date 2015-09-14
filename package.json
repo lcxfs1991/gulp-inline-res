@@ -1,6 +1,6 @@
 {
     "name": "gulp-inline-res",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "gulp plugin make js, css and html files inline",
     "keywords": [
         "gulp",
@@ -9,13 +9,13 @@
         "js",
         "css"
     ],
-    "homepage": "https://github.com/lcxfs1991/gulp-bigpipe-template",
+    "homepage": "https://github.com/lcxfs1991/gulp-inline-res",
     "bugs": {
-        "url": "https://github.com/lcxfs1991/gulp-bigpipe-template/issues"
+        "url": "https://github.com/lcxfs1991/gulp-inline-res/issues"
     },
     "repository": {
         "type": "git",
-        "url": "git://github.com/lcxfs1991/gulp-bigpipe-template.git"
+        "url": "git://github.com/lcxfs1991/gulp-inline-res.git"
     },
     "main": "index.js",
     "author": {

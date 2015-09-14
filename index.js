@@ -1,11 +1,8 @@
 /**
- *  @project gulp-bigpipe-template
+ *  @project gulp-inline-res
  *  @author heyli
  *  @email lcxfs1991
  *  @github: https://github.com/lcxfs1991
- *  @reference: 
- *  1. https://github.com/Rise-Vision/gulp-html2string
- *  2. https://www.npmjs.com/package/gulp-node-simple 
  **/
 var through = require('through2');
 var gutil = require('gulp-util');
