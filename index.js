@@ -11,7 +11,7 @@ var fs = require('fs');
 var path = require('path');
 var minify = require('html-minifier').minify;
 
-const PLUGIN_NAME = 'gulp-inline-src';
+const PLUGIN_NAME = 'gulp-inline-res';
 
 // path of windows and linux should be consistent
 var pathFix = function(path) {
