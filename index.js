@@ -26,10 +26,10 @@ var escapeContent = function(content, quoteChar, indentString) {
     return content.replace(bsRegexp, '\\\\').replace(quoteRegexp, '\\' + quoteChar).replace(/\r?\n/g, nlReplace);
 };
 
-var inlineScript = function(regex, content) {
+var inlineScript = function(regex, dest, content) {
     
     return content.replace(regex, function(script, route) {
-        var route = path.resolve(route).replace('?', '');
+        var route = path.resolve(dest, route).replace('?', '');
         if (!fs.existsSync(route)) {
                 throw new PluginError(PLUGIN_NAME, route + ' does not exist');
         }
@@ -37,9 +37,9 @@ var inlineScript = function(regex, content) {
     });
 };
 
-var inlineStyle = function(regex, content) {
+var inlineStyle = function(regex, dest, content) {
     return content.replace(regex, function(style, route) {
-        var route = path.resolve(route).replace('?', '');
+        var route = path.resolve(dest, route).replace('?', '');
         if (!fs.existsSync(route)) {
                 throw new PluginError(PLUGIN_NAME, route + ' does not exist');
         }
@@ -47,9 +47,9 @@ var inlineStyle = function(regex, content) {
     });
 };
 
-var inlineHtml = function(regex, content, quoteChar, indentString) {
+var inlineHtml = function(regex, dest, content, quoteChar, indentString) {
     return content.replace(regex, function(html, route) {
-        var route = path.resolve(route).replace('?', '');
+        var route = path.resolve(dest, route).replace('?', '');
         if (!fs.existsSync(route)) {
             throw new PluginError(PLUGIN_NAME, route + ' does not exist');
         }
@@ -62,6 +62,7 @@ var inlineHtml = function(regex, content, quoteChar, indentString) {
 // function for gulp plugin
 var inlineSrc = function(opt) {
     var opt = opt || {};
+    var dest = opt.dest || 'dist';
     var scriptInlineRegex = opt.scriptInlineRegex || (new RegExp("<script.*src=[\"|\']*(.+)\?\_\_\_inline.*?<\/script>", "ig"));
     var styleInlineRegex = opt.styleInlineRegex || (new RegExp("<link.*href=[\"|\']*(.+)\?\_\_\_inline.*?>", "ig"));
     var htmlInlineRegex = opt.htmlInlineRegex || (new RegExp("<tpl.*src=[\"|\']*(.+)\?\_\_\_inline.*?<\/tpl>", "ig"));//(new RegExp("tmpl:.*( )*[\(][\"|\']+(.+)[\"|\']+[\)]", "ig"));
@@ -76,9 +77,9 @@ var inlineSrc = function(opt) {
         }
         else if (file.isBuffer()) {
             var content = String(file.contents);
-            content = inlineScript(scriptInlineRegex, content);
-            content = inlineStyle(styleInlineRegex, content);
-            content = inlineHtml(htmlInlineRegex, content, quoteChar, indentString);
+            content = inlineScript(scriptInlineRegex, dest, content);
+            content = inlineStyle(styleInlineRegex, dest, content);
+            content = inlineHtml(htmlInlineRegex, dest, content, quoteChar, indentString);
             // console.log(content);
             file.contents = new Buffer(content);
             
