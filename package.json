@@ -1,6 +1,6 @@
 {
     "name": "gulp-inline-res",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "description": "gulp plugin make js, css and html files inline",
     "keywords": [
         "gulp",
